@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Settings – Level Up Life</title>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body class="dark-mode">
+
+  <div class="loader"><div class="loader-logo"> LevelUp Life</div><div class="loader-bar"><div class="loader-bar-inner"></div></div></div>
+
+  <nav class="navbar">
+    <div class="nav-logo"><i class="fas fa-bolt"></i><span>LevelUp<span class="accent">Life</span></span></div>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Home</a><a href="dashboard.html">Dashboard</a>
+      <a href="habits.html">Habits</a><a href="tasks.html">Tasks</a>
+      <a href="achievements.html">Achievements</a><a href="statistics.html">Statistics</a>
+      <a href="settings.html" class="active">Settings</a><a href="about.html">About</a>
+    </div>
+    <div class="nav-right">
+      <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon" id="themeIcon"></i></button>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <div class="app-layout">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-section">Main</div>
+      <a href="index.html"><i class="fas fa-house"></i> Home</a>
+      <a href="dashboard.html"><i class="fas fa-gauge-high"></i> Dashboard</a>
+      <div class="sidebar-section">Productivity</div>
+      <a href="habits.html"><i class="fas fa-check-double"></i> Habits</a>
+      <a href="tasks.html"><i class="fas fa-list-check"></i> Tasks</a>
+      <div class="sidebar-section">Progress</div>
+      <a href="achievements.html"><i class="fas fa-medal"></i> Achievements</a>
+      <a href="statistics.html"><i class="fas fa-chart-line"></i> Statistics</a>
+      <div class="sidebar-section">More</div>
+      <a href="settings.html" class="active"><i class="fas fa-gear"></i> Settings</a>
+      <a href="about.html"><i class="fas fa-circle-info"></i> About</a>
+    </aside>
+
+    <main class="main-content">
+      <div class="page-title"> SETTINGS</div>
+      <div class="page-subtitle">Customize your Level Up Life experience.</div>
+
+      <!-- APPEARANCE -->
+      <div class="panel">
+        <div class="panel-title">APPEARANCE</div>
+        <div class="toggle-row">
+          <div class="toggle-label">
+            <strong>Dark Mode</strong>
+            <span>Switch between dark and light theme</span>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="darkModeToggle" onchange="toggleDarkMode(this)"/>
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+        <div class="toggle-row">
+          <div class="toggle-label">
+            <strong>Animations</strong>
+            <span>Enable smooth transitions and effects</span>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="animToggle" checked onchange="saveSettingToggle('lul_anim', this)"/>
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <!-- NOTIFICATIONS -->
+      <div class="panel">
+        <div class="panel-title">NOTIFICATIONS</div>
+        <div class="toggle-row">
+          <div class="toggle-label">
+            <strong>XP Notifications</strong>
+            <span>Show toast when you earn XP</span>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="xpNotifToggle" checked onchange="saveSettingToggle('lul_xp_notif', this)"/>
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+        <div class="toggle-row">
+          <div class="toggle-label">
+            <strong>Achievement Alerts</strong>
+            <span>Notify when you unlock a badge</span>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="achNotifToggle" checked onchange="saveSettingToggle('lul_ach_notif', this)"/>
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <!-- PROFILE -->
+      <div class="panel">
+        <div class="panel-title">PLAYER PROFILE</div>
+        <div class="form-row" style="align-items:center;">
+          <input type="text" id="playerName" class="form-input" placeholder="Enter your player name..."/>
+          <button class="btn-primary btn-sm" onclick="saveName()"><i class="fas fa-save"></i> Save Name</button>
+        </div>
+        <div style="color:var(--text-muted); font-size:.85rem;">Current name: <span id="currentName" style="color:var(--cyan); font-weight:700;">Player</span></div>
+      </div>
+
+      <!-- DATA MANAGEMENT -->
+      <div class="panel">
+        <div class="panel-title">DATA MANAGEMENT</div>
+        <div style="display:flex; flex-direction:column; gap:1rem;">
+          <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+            <div>
+              <strong>Reset Tasks</strong>
+              <div style="color:var(--text-muted); font-size:.85rem;">Delete all tasks (XP kept)</div>
+            </div>
+            <button class="btn-ghost btn-sm" onclick="resetData('lul_tasks', 'Tasks')"><i class="fas fa-trash"></i> Reset Tasks</button>
+          </div>
+          <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+            <div>
+              <strong>Reset Habits</strong>
+              <div style="color:var(--text-muted); font-size:.85rem;">Delete all habits (XP kept)</div>
+            </div>
+            <button class="btn-ghost btn-sm" onclick="resetData('lul_habits', 'Habits')"><i class="fas fa-trash"></i> Reset Habits</button>
+          </div>
+          <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+            <div>
+              <strong style="color:#EF4444;">Reset ALL Data</strong>
+              <div style="color:var(--text-muted); font-size:.85rem;"> This will delete everything including XP and level</div>
+            </div>
+            <button class="btn-primary btn-sm btn-danger" onclick="resetAll()">Reset Everything</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- STORAGE INFO -->
+      <div class="panel">
+        <div class="panel-title">STORAGE INFO</div>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:1rem;">
+          <div style="text-align:center; padding:1rem; background:var(--bg); border-radius:10px; border:1px solid var(--border);">
+            <div style="font-family:'Orbitron',sans-serif; font-size:1.5rem; color:var(--cyan);" id="stoTasks">0</div>
+            <div style="font-size:.8rem; color:var(--text-muted);">Tasks Saved</div>
+          </div>
+          <div style="text-align:center; padding:1rem; background:var(--bg); border-radius:10px; border:1px solid var(--border);">
+            <div style="font-family:'Orbitron',sans-serif; font-size:1.5rem; color:var(--primary-light);" id="stoHabits">0</div>
+            <div style="font-size:.8rem; color:var(--text-muted);">Habits Saved</div>
+          </div>
+          <div style="text-align:center; padding:1rem; background:var(--bg); border-radius:10px; border:1px solid var(--border);">
+            <div style="font-family:'Orbitron',sans-serif; font-size:1.5rem; color:var(--yellow);" id="stoLevel">1</div>
+            <div style="font-size:.8rem; color:var(--text-muted);">Current Level</div>
+          </div>
+          <div style="text-align:center; padding:1rem; background:var(--bg); border-radius:10px; border:1px solid var(--border);">
+            <div style="font-family:'Orbitron',sans-serif; font-size:1.5rem; color:var(--green);" id="stoAch">0</div>
+            <div style="font-size:.8rem; color:var(--text-muted);">Achievements</div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <script src="js/script.js"></script>
+  <script>
+    function toggleDarkMode(el) {
+      const theme = el.checked ? 'light' : 'dark';
+      localStorage.setItem('lul_theme', theme);
+      applyTheme(theme);
+    }
+
+    function saveSettingToggle(key, el) {
+      localStorage.setItem(key, el.checked ? '1' : '0');
+      showToast('Setting saved!', 'success');
+    }
+
+    function saveName() {
+      const name = document.getElementById('playerName').value.trim();
+      if (!name) { showToast('Enter a name first!', 'warning'); return; }
+      localStorage.setItem('lul_name', name);
+      document.getElementById('currentName').textContent = name;
+      document.getElementById('playerName').value = '';
+      showToast(`Name saved: ${name}! 🎮`, 'success');
+    }
+
+    function resetData(key, label) {
+      showModal('⚠️', `Reset ${label}`, `Are you sure? All ${label.toLowerCase()} will be deleted.`, () => {
+        localStorage.removeItem(key);
+        loadStorageInfo();
+        showToast(`${label} reset!`, 'warning');
+      });
+    }
+
+    function resetAll() {
+      showModal('💀', 'Reset Everything', 'This will delete ALL your data including XP and level. This cannot be undone!', () => {
+        ['lul_tasks','lul_habits','lul_player','lul_name'].forEach(k => localStorage.removeItem(k));
+        loadStorageInfo();
+        showToast('All data reset. Starting fresh! 🌱', 'warning');
+        setTimeout(() => location.href = 'index.html', 2000);
+      });
+    }
+
+    function loadStorageInfo() {
+      const tasks = JSON.parse(localStorage.getItem('lul_tasks') || '[]');
+      const habits = JSON.parse(localStorage.getItem('lul_habits') || '[]');
+      const data = getPlayerData();
+      document.getElementById('stoTasks').textContent = tasks.length;
+      document.getElementById('stoHabits').textContent = habits.length;
+      document.getElementById('stoLevel').textContent = data.level;
+      document.getElementById('stoAch').textContent = (data.achievementsUnlocked || []).length;
+      document.getElementById('currentName').textContent = localStorage.getItem('lul_name') || 'Player';
+
+      // Sync dark mode toggle state
+      const isDark = localStorage.getItem('lul_theme') !== 'light';
+      const dmToggle = document.getElementById('darkModeToggle');
+      if (dmToggle) dmToggle.checked = !isDark;
+    }
+
+    document.addEventListener('DOMContentLoaded', loadStorageInfo);
+  </script>
+</body>
+</html>

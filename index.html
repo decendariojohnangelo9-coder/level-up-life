@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Level Up Life</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body class="dark-mode">
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-logo">
+      <i class="fas fa-bolt"></i>
+      <span>LevelUp<span class="accent">Life</span></span>
+    </div>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html" class="active">Home</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="habits.html">Habits</a>
+      <a href="tasks.html">Tasks</a>
+      <a href="achievements.html">Achievements</a>
+      <a href="statistics.html">Statistics</a>
+      <a href="settings.html">Settings</a>
+      <a href="about.html">About</a>
+    </div>
+    <div class="nav-right">
+      <button class="theme-toggle" id="themeToggle" title="Toggle Dark/Light Mode">
+        <i class="fas fa-moon" id="themeIcon"></i>
+      </button>
+      <button class="hamburger" id="hamburger">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="hero-bg-grid"></div>
+    <div class="hero-glow glow1"></div>
+    <div class="hero-glow glow2"></div>
+    <div class="hero-content">
+      <div class="hero-badge"> RPG-Inspired Productivity</div>
+      <h1 class="hero-title">
+        <span class="line1">LEVEL UP</span>
+        <span class="line2">YOUR <span class="accent-text">LIFE</span></span>
+      </h1>
+      <p class="hero-sub">Turn your daily goals into epic quests. Earn XP, unlock achievements, and become the best version of yourself.</p>
+      <div class="hero-cta">
+        <a href="dashboard.html" class="btn-primary"><i class="fas fa-rocket"></i> Start Your Journey</a>
+        <a href="about.html" class="btn-ghost">Learn More</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hstat"><span class="hstat-num" data-target="100">0</span><span>+</span><div>XP Per Level</div></div>
+        <div class="hstat-divider"></div>
+        <div class="hstat"><span class="hstat-num" data-target="8">0</span><div>Pages</div></div>
+        <div class="hstat-divider"></div>
+        <div class="hstat"><span class="hstat-num" data-target="15">0</span><span>+</span><div>Features</div></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-card-float">
+        <div class="hcard">
+          <div>
+            <div class="hcard-label">Current XP</div>
+            <div class="hcard-val">350 / 400</div>
+          </div>
+        </div>
+        <div class="hcard">
+          <div>
+            <div class="hcard-label">Daily Streak</div>
+            <div class="hcard-val">7 Days </div>
+          </div>
+        </div>
+        <div class="hcard">
+          <div>
+            <div class="hcard-label">Achievements</div>
+            <div class="hcard-val">5 Unlocked</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURE CARDS -->
+  <section class="features" id="features">
+    <div class="section-header">
+      <h2> CORE FEATURES</h2>
+      <p>Everything you need to level up your productivity</p>
+    </div>
+    <div class="feature-grid">
+      <div class="feat-card" onclick="location.href='habits.html'">
+        <h3>Habit Tracker</h3>
+        <p>Build powerful daily habits with streak tracking and progress bars. Never miss a day.</p>
+        <div class="feat-tag">+20 XP per habit</div>
+      </div>
+      <div class="feat-card" onclick="location.href='tasks.html'">
+        <h3>Task Manager</h3>
+        <p>Organize your daily tasks by priority. Search, filter, and crush your to-do list.</p>
+        <div class="feat-tag">+10 XP per task</div>
+      </div>
+      <div class="feat-card" onclick="location.href='achievements.html'">
+        <h3>Achievements</h3>
+        <p>Unlock badges and rewards as you hit milestones. Flex your progress with a badge wall.</p>
+        <div class="feat-tag">Unlock Badges</div>
+      </div>
+      <div class="feat-card" onclick="location.href='statistics.html'">
+        <h3>Statistics</h3>
+        <p>Visual productivity charts and weekly progress reports to keep you on track.</p>
+        <div class="feat-tag">Visual Reports</div>
+      </div>
+      <div class="feat-card" onclick="location.href='dashboard.html'">
+        <h3>Dashboard</h3>
+        <p>Your personal command center. See XP, levels, and daily summary at a glance.</p>
+        <div class="feat-tag">Command Center</div>
+      </div>
+      <div class="feat-card" onclick="location.href='settings.html'">
+        <h3>Dark / Light Mode</h3>
+        <p>Switch between dark and light themes anytime. Customized experience just for you.</p>
+        <div class="feat-tag">Personalize</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- XP SYSTEM OVERVIEW -->
+  <section class="xp-section">
+    <div class="xp-left">
+      <h2> HOW THE XP SYSTEM WORKS</h2>
+      <p>Complete tasks and habits to earn experience points. Level up to unlock new achievement tiers and rank titles!</p>
+      <div class="xp-steps">
+        <div class="xp-step"><div class="xp-step-num">01</div><div><strong>Complete Tasks</strong><br/>+10 XP each</div></div>
+        <div class="xp-step"><div class="xp-step-num">02</div><div><strong>Complete Habits</strong><br/>+20 XP each</div></div>
+        <div class="xp-step"><div class="xp-step-num">03</div><div><strong>Level Up!</strong><br/>Every 100 XP</div></div>
+        <div class="xp-step"><div class="xp-step-num">04</div><div><strong>Unlock Badges</strong><br/>Hit milestones</div></div>
+      </div>
+      <a href="dashboard.html" class="btn-primary">Go to Dashboard <i class="fas fa-arrow-right"></i></a>
+    </div>
+    <div class="xp-right">
+      <div class="level-card">
+        <div class="level-badge">LVL <span id="demoLvl">4</span></div>
+        <div class="level-title" id="demoTitle">Quest Seeker</div>
+        <div class="xp-bar-wrap">
+          <div class="xp-bar-fill" id="demoBar" style="width:65%"></div>
+        </div>
+        <div class="xp-info"><span id="demoXP">65</span> / 100 XP</div>
+        <div class="rank-titles">
+          <div class="rank active"> Novice</div>
+          <div class="rank active"> Apprentice</div>
+          <div class="rank active"> Warrior</div>
+          <div class="rank active"> Quest Seeker</div>
+          <div class="rank"> Champion</div>
+          <div class="rank"> Legendary</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-logo"><i class="fas fa-bolt"></i> LevelUp<span class="accent">Life</span></div>
+      <p>A Gamified Self-Improvement and Productivity Web Application</p>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="habits.html">Habits</a>
+        <a href="tasks.html">Tasks</a>
+        <a href="achievements.html">Achievements</a>
+        <a href="about.html">About</a>
+      </div>
+      <p class="footer-copy">© 2025 LevelUpLife | Built with HTML, CSS & JavaScript</p>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About – Level Up Life</title>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body class="dark-mode">
+
+  <div class="loader"><div class="loader-logo"> LevelUp Life</div><div class="loader-bar"><div class="loader-bar-inner"></div></div></div>
+
+  <nav class="navbar">
+    <div class="nav-logo"><i class="fas fa-bolt"></i><span>LevelUp<span class="accent">Life</span></span></div>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Home</a><a href="dashboard.html">Dashboard</a>
+      <a href="habits.html">Habits</a><a href="tasks.html">Tasks</a>
+      <a href="achievements.html">Achievements</a><a href="statistics.html">Statistics</a>
+      <a href="settings.html">Settings</a><a href="about.html" class="active">About</a>
+    </div>
+    <div class="nav-right">
+      <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon" id="themeIcon"></i></button>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <div class="app-layout">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-section">Main</div>
+      <a href="index.html"><i class="fas fa-house"></i> Home</a>
+      <a href="dashboard.html"><i class="fas fa-gauge-high"></i> Dashboard</a>
+      <div class="sidebar-section">Productivity</div>
+      <a href="habits.html"><i class="fas fa-check-double"></i> Habits</a>
+      <a href="tasks.html"><i class="fas fa-list-check"></i> Tasks</a>
+      <div class="sidebar-section">Progress</div>
+      <a href="achievements.html"><i class="fas fa-medal"></i> Achievements</a>
+      <a href="statistics.html"><i class="fas fa-chart-line"></i> Statistics</a>
+      <div class="sidebar-section">More</div>
+      <a href="settings.html"><i class="fas fa-gear"></i> Settings</a>
+      <a href="about.html" class="active"><i class="fas fa-circle-info"></i> About</a>
+    </aside>
+
+    <main class="main-content">
+      <div class="page-title"> ABOUT</div>
+      <div class="page-subtitle">Learn more about Level Up Life and the team behind it.</div>
+
+      <!-- PROJECT DESCRIPTION -->
+      <div class="panel" style="background:linear-gradient(135deg,rgba(124,58,237,0.1),rgba(34,211,238,0.08)); border-color:var(--primary);">
+        <div style="display:flex; gap:1.5rem; align-items:center; flex-wrap:wrap;">
+          <div style="font-size:4rem;"></div>
+          <div>
+            <div style="font-family:'Orbitron',sans-serif; font-size:1.5rem; font-weight:900; margin-bottom:.5rem;">LEVEL UP LIFE</div>
+            <div style="color:var(--cyan); font-weight:700; margin-bottom:.8rem; letter-spacing:2px; font-size:.85rem;">GAMIFIED SELF-IMPROVEMENT & PRODUCTIVITY WEB APPLICATION</div>
+            <p style="color:var(--text-muted); font-size:.95rem; line-height:1.7;">Level Up Life is a responsive and interactive web application that transforms self-improvement into a rewarding game. Complete tasks, build habits, earn XP, unlock achievements, and become the legendary version of yourself.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROJECT OVERVIEW -->
+      <div class="panel">
+        <div class="panel-title"><i class="fas fa-scroll" style="color:var(--cyan)"></i> PROJECT OVERVIEW</div>
+        <p style="color:var(--text-muted); line-height:1.8; font-size:.95rem;">
+          Level Up Life is a client-side web application developed using <strong style="color:var(--cyan)">HTML</strong>, <strong style="color:var(--orange)">CSS</strong>, and <strong style="color:var(--yellow)">JavaScript</strong>. The system runs entirely in the browser and does not require a backend database. User data is stored using <strong style="color:var(--primary-light)">LocalStorage</strong> for persistence across sessions.
+          <br/><br/>
+          The application uses gamification techniques inspired by role-playing games (RPGs) — experience points, levels, achievement badges, and streak systems — to motivate users to accomplish their daily goals and improve their habits and productivity.
+        </p>
+      </div>
+
+      <!-- OBJECTIVES -->
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.5rem;">
+        <div class="panel">
+          <div class="panel-title">GENERAL OBJECTIVE</div>
+          <p style="color:var(--text-muted); line-height:1.7; font-size:.9rem;">To design and develop a responsive and interactive self-improvement web application using HTML, CSS, and JavaScript that motivates users to improve productivity and habits through gamification.</p>
+        </div>
+        <div class="panel">
+          <div class="panel-title"><i class="fas fa-list-check" style="color:var(--cyan)"></i> SPECIFIC OBJECTIVES</div>
+          <ul style="list-style:none; display:flex; flex-direction:column; gap:.5rem;">
+            ${[
+              'Create structured web pages using HTML',
+              'Design a responsive interface using CSS',
+              'Implement interactivity using JavaScript',
+              'Apply gamification: XP, levels, achievements',
+              'Provide task and habit tracking features',
+              'Enhance UX through animations',
+              'Use LocalStorage for data saving',
+              'Ensure accessibility across all devices',
+            ].map(o => `<li style="color:var(--text-muted); font-size:.85rem; display:flex; gap:.5rem;"><span style="color:var(--cyan);">◆</span>${o}</li>`).join('')}
+          </ul>
+        </div>
+      </div>
+
+      <!-- TECH STACK -->
+      <div class="panel">
+        <div class="panel-title">TECHNOLOGY STACK</div>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:1rem;">
+          ${[
+            { icon:'fa-html5', label:'HTML5', desc:'Structure', color:'#E34F26' },
+            { icon:'fa-css3-alt', label:'CSS3', desc:'Design & Responsive', color:'#1572B6' },
+            { icon:'fa-js', label:'JavaScript', desc:'Interactivity & Logic', color:'#F7DF1E' },
+            { icon:'fa-database', label:'LocalStorage', desc:'Data Persistence', color:'var(--cyan)' },
+            { icon:'fa-font-awesome', label:'Font Awesome', desc:'Icons', color:'var(--primary-light)' },
+            { icon:'fa-google', label:'Google Fonts', desc:'Typography', color:'var(--green)' },
+          ].map(t => `
+            <div style="text-align:center; padding:1.2rem; background:var(--bg); border:1px solid var(--border); border-radius:12px; transition:all .3s;" onmouseover="this.style.borderColor='var(--cyan)'" onmouseout="this.style.borderColor='var(--border)'">
+              <i class="fab ${t.icon}" style="font-size:2rem; color:${t.color}; margin-bottom:.5rem; display:block;"></i>
+              <div style="font-weight:700; font-size:.9rem;">${t.label}</div>
+              <div style="color:var(--text-muted); font-size:.75rem;">${t.desc}</div>
+            </div>`).join('')}
+        </div>
+      </div>
+
+      <!-- FEATURES -->
+      <div class="panel">
+        <div class="panel-title">KEY FEATURES</div>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:.8rem;">
+          ${[
+            '✅ Responsive Design','✅ Dark/Light Mode','✅ XP & Level System',
+            '✅ Habit Tracker','✅ Daily Task Manager','✅ Achievement Badges',
+            '✅ Progress Charts','✅ Search & Filter','✅ LocalStorage Save',
+            '✅ Modal Popups','✅ Toast Notifications','✅ Smooth Animations',
+            '✅ Hamburger Menu','✅ Streak Tracking','✅ Priority Labels',
+          ].map(f => `<div style="padding:.5rem .8rem; background:var(--bg); border:1px solid var(--border); border-radius:8px; font-size:.85rem; font-weight:600;">${f}</div>`).join('')}
+        </div>
+      </div>
+
+      <!-- SCOPE & LIMITATIONS -->
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.5rem;">
+        <div class="panel">
+          <div class="panel-title">SCOPE</div>
+          <ul style="list-style:none; display:flex; flex-direction:column; gap:.5rem;">
+            ${['8 Complete Web Pages','Full XP Leveling System','Habit & Task Tracking','Achievement System','Statistics & Charts','Responsive on all devices','LocalStorage Data Saving','Dark & Light Mode'].map(s=>`<li style="color:var(--text-muted);font-size:.85rem;display:flex;gap:.5rem;"><span style="color:var(--green);">✓</span>${s}</li>`).join('')}
+          </ul>
+        </div>
+        <div class="panel">
+          <div class="panel-title">LIMITATIONS</div>
+          <ul style="list-style:none; display:flex; flex-direction:column; gap:.5rem;">
+            ${['No backend database','No real user accounts','Data limited to browser','No real-time multiplayer','Front-end only','No server-side processing'].map(s=>`<li style="color:var(--text-muted);font-size:.85rem;display:flex;gap:.5rem;"><span style="color:var(--orange);"></span>${s}</li>`).join('')}
+          </ul>
+        </div>
+      </div>
+
+      <!-- COURSE INFO -->
+      <div class="panel" style="text-align:center;">
+        <div style="font-family:'Orbitron',sans-serif; font-size:.8rem; color:var(--text-muted); letter-spacing:2px;">© 2025 LEVEL UP LIFE | BUILT WITH HTML, CSS & JAVASCRIPT</div>
+      </div>
+
+    </main>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

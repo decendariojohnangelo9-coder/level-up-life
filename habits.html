@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Habits – Level Up Life</title>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body class="dark-mode">
+
+  <div class="loader"><div class="loader-logo"> LevelUp Life</div><div class="loader-bar"><div class="loader-bar-inner"></div></div></div>
+
+  <nav class="navbar">
+    <div class="nav-logo"><i class="fas fa-bolt"></i><span>LevelUp<span class="accent">Life</span></span></div>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Home</a><a href="dashboard.html">Dashboard</a>
+      <a href="habits.html" class="active">Habits</a><a href="tasks.html">Tasks</a>
+      <a href="achievements.html">Achievements</a><a href="statistics.html">Statistics</a>
+      <a href="settings.html">Settings</a><a href="about.html">About</a>
+    </div>
+    <div class="nav-right">
+      <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon" id="themeIcon"></i></button>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <div class="app-layout">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-section">Main</div>
+      <a href="index.html"><i class="fas fa-house"></i> Home</a>
+      <a href="dashboard.html"><i class="fas fa-gauge-high"></i> Dashboard</a>
+      <div class="sidebar-section">Productivity</div>
+      <a href="habits.html" class="active"><i class="fas fa-check-double"></i> Habits</a>
+      <a href="tasks.html"><i class="fas fa-list-check"></i> Tasks</a>
+      <div class="sidebar-section">Progress</div>
+      <a href="achievements.html"><i class="fas fa-medal"></i> Achievements</a>
+      <a href="statistics.html"><i class="fas fa-chart-line"></i> Statistics</a>
+      <div class="sidebar-section">More</div>
+      <a href="settings.html"><i class="fas fa-gear"></i> Settings</a>
+      <a href="about.html"><i class="fas fa-circle-info"></i> About</a>
+    </aside>
+
+    <main class="main-content">
+      <div class="page-title"> HABIT TRACKER</div>
+      <div class="page-subtitle">Build powerful daily habits. Complete them to earn XP and grow your streak!</div>
+
+      <!-- XP BAR -->
+      <div class="panel" style="background:linear-gradient(135deg,rgba(124,58,237,0.1),rgba(34,211,238,0.08)); border-color:var(--primary);">
+        <div style="display:flex; align-items:center; gap:1.5rem; flex-wrap:wrap;">
+          <div style="font-family:'Orbitron',sans-serif; font-size:1.8rem; font-weight:900; color:var(--cyan);">LVL <span id="levelNum">1</span></div>
+          <div style="flex:1; min-width:150px;">
+            <div style="display:flex; justify-content:space-between; margin-bottom:.4rem;"><span style="font-weight:700;">XP</span><span id="xpText" style="color:var(--cyan); font-weight:700;">0/100</span></div>
+            <div class="xp-bar-wrap"><div class="xp-bar-fill" id="xpBar" style="width:0%"></div></div>
+          </div>
+          <div style="text-align:center;">
+            <div style="font-family:'Orbitron',sans-serif; font-size:1.5rem; color:var(--orange);">🔥 <span id="streakNum">0</span></div>
+            <div style="font-size:.75rem; color:var(--text-muted); letter-spacing:1px;">DAY STREAK</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ADD HABIT -->
+      <div class="panel">
+        <div class="panel-title"><i class="fas fa-plus" style="color:var(--cyan)"></i> ADD NEW HABIT</div>
+        <div class="form-row">
+          <input type="text" id="habitInput" class="form-input" placeholder="Enter habit name (e.g. Exercise 30 mins)..." />
+          <select id="habitCategory" class="form-select">
+            <option value="health"> Health</option>
+            <option value="learning"> Learning</option>
+            <option value="mindset"> Mindset</option>
+            <option value="productivity"> Productivity</option>
+            <option value="social"> Social</option>
+          </select>
+          <button class="btn-primary" onclick="addHabit()"><i class="fas fa-plus"></i> Add Habit</button>
+        </div>
+      </div>
+
+      <!-- STATS ROW -->
+      <div class="stat-grid" style="grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); margin-bottom:1.5rem;">
+        <div class="stat-card">
+          <div class="stat-icon" style="background:rgba(34,211,238,0.15);color:var(--cyan);"><i class="fas fa-list"></i></div>
+          <div class="stat-info"><div class="stat-val" id="habitTotalNum">0</div><div class="stat-label">Total</div></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon" style="background:rgba(34,197,94,0.15);color:var(--green);"><i class="fas fa-circle-check"></i></div>
+          <div class="stat-info"><div class="stat-val" id="habitDoneNum">0</div><div class="stat-label">Completed</div></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon" style="background:rgba(249,115,22,0.15);color:var(--orange);"><i class="fas fa-fire"></i></div>
+          <div class="stat-info"><div class="stat-val" id="habitStreakBest">0</div><div class="stat-label">Best Streak</div></div>
+        </div>
+      </div>
+
+      <!-- SEARCH -->
+      <div class="search-row">
+        <div class="search-wrap">
+          <i class="fas fa-magnifying-glass"></i>
+          <input type="text" class="search-input" id="habitSearch" placeholder="Search habits..." oninput="renderHabits()"/>
+        </div>
+        <select class="form-select" id="habitFilter" onchange="renderHabits()">
+          <option value="all">All</option>
+          <option value="pending">Pending</option>
+          <option value="done">Completed</option>
+        </select>
+      </div>
+
+      <!-- HABIT LIST -->
+      <div class="panel">
+        <div class="panel-title"><i class="fas fa-check-double" style="color:var(--primary-light)"></i> MY HABITS</div>
+        <div id="habitList" class="item-list">
+          <div style="color:var(--text-muted); text-align:center; padding:2rem;">No habits yet. Add your first habit above! 💪</div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/script.js"></script>
+  <script>
+    const catEmoji = { health:'-', learning:'-', mindset:'-', productivity:'-', social:'-' };
+
+    function getHabits() { return JSON.parse(localStorage.getItem('lul_habits') || '[]'); }
+    function saveHabits(h) { localStorage.setItem('lul_habits', JSON.stringify(h)); }
+
+    function addHabit() {
+      const input = document.getElementById('habitInput');
+      const name = input.value.trim();
+      if (!name) { showToast('Please enter a habit name!', 'warning'); return; }
+      const cat = document.getElementById('habitCategory').value;
+      const habits = getHabits();
+      habits.push({ id: Date.now(), name, category: cat, done: false, streak: 0, lastDone: null });
+      saveHabits(habits);
+      input.value = '';
+      renderHabits();
+      showToast('Habit added! Keep it up! ', 'success');
+    }
+
+    function completeHabit(id) {
+      const habits = getHabits();
+      const h = habits.find(x => x.id === id);
+      if (!h) return;
+      if (h.done) { showToast('Already completed today!', 'warning'); return; }
+      h.done = true;
+      const today = new Date().toDateString();
+      const yesterday = new Date(Date.now() - 86400000).toDateString();
+      h.streak = (h.lastDone === yesterday) ? (h.streak || 0) + 1 : 1;
+      h.lastDone = today;
+      saveHabits(habits);
+
+      const data = getPlayerData();
+      data.totalHabits = (data.totalHabits || 0) + 1;
+      savePlayerData(data);
+      checkAchievements(data);
+
+      addXP(20, 'Habit completed!');
+      renderHabits();
+    }
+
+    function deleteHabit(id) {
+      showModal('🗑️', 'Delete Habit', 'Are you sure you want to delete this habit?', () => {
+        const habits = getHabits().filter(x => x.id !== id);
+        saveHabits(habits);
+        renderHabits();
+        showToast('Habit deleted.',);
+      });
+    }
+
+    function renderHabits() {
+      let habits = getHabits();
+      const search = document.getElementById('habitSearch').value.toLowerCase();
+      const filter = document.getElementById('habitFilter').value;
+
+      if (search) habits = habits.filter(h => h.name.toLowerCase().includes(search));
+      if (filter === 'done') habits = habits.filter(h => h.done);
+      if (filter === 'pending') habits = habits.filter(h => !h.done);
+
+      const list = document.getElementById('habitList');
+      if (habits.length === 0) {
+        list.innerHTML = '<div style="color:var(--text-muted);text-align:center;padding:2rem;">No habits found. </div>';
+      } else {
+        list.innerHTML = habits.map(h => `
+          <div class="item ${h.done ? 'done' : ''}">
+            <span style="font-size:1.3rem;">${catEmoji[h.category] || '⭐'}</span>
+            <span class="item-name">${h.name}</span>
+            <span style="font-size:.8rem; color:var(--orange); font-weight:700;">🔥 ${h.streak || 0}</span>
+            <div style="flex:1;"></div>
+            <div class="item-actions">
+              <button class="icon-btn done-btn" onclick="completeHabit(${h.id})" title="Complete"><i class="fas fa-check"></i></button>
+              <button class="icon-btn del" onclick="deleteHabit(${h.id})" title="Delete"><i class="fas fa-trash"></i></button>
+            </div>
+          </div>`).join('');
+      }
+
+      const all = getHabits();
+      document.getElementById('habitTotalNum').textContent = all.length;
+      document.getElementById('habitDoneNum').textContent = all.filter(h => h.done).length;
+      document.getElementById('habitStreakBest').textContent = all.length ? Math.max(...all.map(h => h.streak || 0)) : 0;
+    }
+
+    document.getElementById('habitInput').addEventListener('keydown', e => { if (e.key === 'Enter') addHabit(); });
+    document.addEventListener('DOMContentLoaded', renderHabits);
+  </script>
+</body>
+</html>

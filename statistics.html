@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Statistics – Level Up Life</title>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body class="dark-mode">
+
+  <div class="loader"><div class="loader-logo"> LevelUp Life</div><div class="loader-bar"><div class="loader-bar-inner"></div></div></div>
+
+  <nav class="navbar">
+    <div class="nav-logo"><i class="fas fa-bolt"></i><span>LevelUp<span class="accent">Life</span></span></div>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Home</a><a href="dashboard.html">Dashboard</a>
+      <a href="habits.html">Habits</a><a href="tasks.html">Tasks</a>
+      <a href="achievements.html">Achievements</a><a href="statistics.html" class="active">Statistics</a>
+      <a href="settings.html">Settings</a><a href="about.html">About</a>
+    </div>
+    <div class="nav-right">
+      <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon" id="themeIcon"></i></button>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <div class="app-layout">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-section">Main</div>
+      <a href="index.html"><i class="fas fa-house"></i> Home</a>
+      <a href="dashboard.html"><i class="fas fa-gauge-high"></i> Dashboard</a>
+      <div class="sidebar-section">Productivity</div>
+      <a href="habits.html"><i class="fas fa-check-double"></i> Habits</a>
+      <a href="tasks.html"><i class="fas fa-list-check"></i> Tasks</a>
+      <div class="sidebar-section">Progress</div>
+      <a href="achievements.html"><i class="fas fa-medal"></i> Achievements</a>
+      <a href="statistics.html" class="active"><i class="fas fa-chart-line"></i> Statistics</a>
+      <div class="sidebar-section">More</div>
+      <a href="settings.html"><i class="fas fa-gear"></i> Settings</a>
+      <a href="about.html"><i class="fas fa-circle-info"></i> About</a>
+    </aside>
+
+    <main class="main-content">
+      <div class="page-title">📈 STATISTICS</div>
+      <div class="page-subtitle">Track your productivity journey. Every stat tells your story.</div>
+
+      <!-- SUMMARY STATS -->
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="stat-icon" style="background:rgba(34,211,238,0.15);color:var(--cyan);"><i class="fas fa-list-check"></i></div>
+          <div class="stat-info"><div class="stat-val" id="sTotalTasks">0</div><div class="stat-label">Total Tasks Done</div></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon" style="background:rgba(124,58,237,0.15);color:var(--primary-light);"><i class="fas fa-check-double"></i></div>
+          <div class="stat-info"><div class="stat-val" id="sTotalHabits">0</div><div class="stat-label">Total Habits Done</div></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon" style="background:rgba(251,191,36,0.15);color:var(--yellow);"><i class="fas fa-bolt"></i></div>
+          <div class="stat-info"><div class="stat-val" id="sTotalXP">0</div><div class="stat-label">Total XP Earned</div></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon" style="background:rgba(249,115,22,0.15);color:var(--orange);"><i class="fas fa-fire"></i></div>
+          <div class="stat-info"><div class="stat-val" id="sStreak">0</div><div class="stat-label">Current Streak</div></div>
+        </div>
+      </div>
+
+      <!-- TASK COMPLETION CHART -->
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; flex-wrap:wrap;">
+        <div class="panel">
+          <div class="panel-title">TASK BREAKDOWN</div>
+          <div class="chart-bar-wrap" id="taskChart"></div>
+        </div>
+
+        <!-- HABIT PROGRESS -->
+        <div class="panel">
+          <div class="panel-title">HABIT PROGRESS</div>
+          <div class="chart-bar-wrap" id="habitChart"></div>
+        </div>
+      </div>
+
+      <!-- COMPLETION RATES -->
+      <div class="panel">
+        <div class="panel-title">COMPLETION RATES</div>
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap:1.5rem;">
+          <div>
+            <div style="display:flex; justify-content:space-between; margin-bottom:.5rem;">
+              <span style="font-weight:600;">Tasks Completion</span>
+              <span id="taskCompPct" style="color:var(--cyan); font-weight:700;">0%</span>
+            </div>
+            <div class="progress-wrap"><div class="progress-fill" id="taskCompBar" style="width:0%"></div></div>
+          </div>
+          <div>
+            <div style="display:flex; justify-content:space-between; margin-bottom:.5rem;">
+              <span style="font-weight:600;">Habits Completion</span>
+              <span id="habitCompPct" style="color:var(--primary-light); font-weight:700;">0%</span>
+            </div>
+            <div class="progress-wrap"><div class="progress-fill" id="habitCompBar" style="width:0%; background:linear-gradient(90deg,var(--primary),var(--primary-light));"></div></div>
+          </div>
+          <div>
+            <div style="display:flex; justify-content:space-between; margin-bottom:.5rem;">
+              <span style="font-weight:600;">Achievements</span>
+              <span id="achCompPct" style="color:var(--yellow); font-weight:700;">0%</span>
+            </div>
+            <div class="progress-wrap"><div class="progress-fill" id="achCompBar" style="width:0%; background:linear-gradient(90deg,var(--yellow),var(--orange));"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- LEVEL HISTORY -->
+      <div class="panel">
+        <div class="panel-title">LEVEL MILESTONES</div>
+        <div id="levelMilestones" style="display:flex; flex-wrap:wrap; gap:.8rem;"></div>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const data = getPlayerData();
+      const tasks = JSON.parse(localStorage.getItem('lul_tasks') || '[]');
+      const habits = JSON.parse(localStorage.getItem('lul_habits') || '[]');
+      const totalXP = (data.level - 1) * 100 + (data.xp || 0);
+
+      document.getElementById('sTotalTasks').textContent = data.totalTasks || 0;
+      document.getElementById('sTotalHabits').textContent = data.totalHabits || 0;
+      document.getElementById('sTotalXP').textContent = totalXP;
+      document.getElementById('sStreak').textContent = data.streak || 0;
+
+      // Task breakdown chart
+      const high = tasks.filter(t => t.priority === 'high').length;
+      const med = tasks.filter(t => t.priority === 'medium').length;
+      const low = tasks.filter(t => t.priority === 'low').length;
+      const tMax = Math.max(high, med, low, 1);
+      document.getElementById('taskChart').innerHTML = [
+        { label:'High', val:high, color:'#EF4444' },
+        { label:'Med',  val:med,  color:'var(--yellow)' },
+        { label:'Low',  val:low,  color:'var(--green)' },
+        { label:'Done', val:tasks.filter(t=>t.done).length, color:'var(--cyan)' },
+      ].map(r => `
+        <div class="chart-row">
+          <span class="chart-label">${r.label}</span>
+          <div class="chart-bar-bg">
+            <div class="chart-bar-inner" style="width:${(r.val/tMax*100)||0}%; background:${r.color};">${r.val > 0 ? r.val : ''}</div>
+          </div>
+          <span class="chart-num">${r.val}</span>
+        </div>`).join('');
+
+      // Habit breakdown chart
+      const catEmoji = { health:'💪', learning:'📚', mindset:'🧘', productivity:'⚡', social:'🤝' };
+      const catCounts = {};
+      habits.forEach(h => { catCounts[h.category] = (catCounts[h.category] || 0) + 1; });
+      const hMax = Math.max(...Object.values(catCounts), 1);
+      document.getElementById('habitChart').innerHTML = Object.entries(catCounts).length
+        ? Object.entries(catCounts).map(([cat, cnt]) => `
+            <div class="chart-row">
+              <span class="chart-label">${catEmoji[cat] || '⭐'}</span>
+              <div class="chart-bar-bg"><div class="chart-bar-inner" style="width:${cnt/hMax*100}%;">${cnt}</div></div>
+              <span class="chart-num">${cnt}</span>
+            </div>`).join('')
+        : '<div style="color:var(--text-muted);text-align:center;padding:1rem;">No habits yet.</div>';
+
+      // Completion rates
+      const taskComp = tasks.length ? Math.round(tasks.filter(t=>t.done).length/tasks.length*100) : 0;
+      const habitComp = habits.length ? Math.round(habits.filter(h=>h.done).length/habits.length*100) : 0;
+      const achComp = Math.round((data.achievementsUnlocked||[]).length / 12 * 100);
+
+      document.getElementById('taskCompPct').textContent = taskComp + '%';
+      document.getElementById('taskCompBar').style.width = taskComp + '%';
+      document.getElementById('habitCompPct').textContent = habitComp + '%';
+      document.getElementById('habitCompBar').style.width = habitComp + '%';
+      document.getElementById('achCompPct').textContent = achComp + '%';
+      document.getElementById('achCompBar').style.width = achComp + '%';
+
+      // Level milestones
+      const milestones = [1,3,5,8,10,15,20,30,50];
+      document.getElementById('levelMilestones').innerHTML = milestones.map(m => {
+        const reached = data.level >= m;
+        return `<div style="padding:.5rem 1rem; border-radius:10px; font-weight:700; font-size:.85rem; border:1px solid ${reached?'var(--yellow)':'var(--border)'}; background:${reached?'rgba(251,191,36,0.1)':'var(--bg)'}; color:${reached?'var(--yellow)':'var(--text-muted)'};">
+          ${reached ? '-' : '-'} Level ${m}
+        </div>`;
+      }).join('');
+    });
+  </script>
+</body>
+</html>

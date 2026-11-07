@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Achievements – Level Up Life</title>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body class="dark-mode">
+
+  <div class="loader"><div class="loader-logo"> LevelUp Life</div><div class="loader-bar"><div class="loader-bar-inner"></div></div></div>
+
+  <nav class="navbar">
+    <div class="nav-logo"><i class="fas fa-bolt"></i><span>LevelUp<span class="accent">Life</span></span></div>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Home</a><a href="dashboard.html">Dashboard</a>
+      <a href="habits.html">Habits</a><a href="tasks.html">Tasks</a>
+      <a href="achievements.html" class="active">Achievements</a><a href="statistics.html">Statistics</a>
+      <a href="settings.html">Settings</a><a href="about.html">About</a>
+    </div>
+    <div class="nav-right">
+      <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon" id="themeIcon"></i></button>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <div class="app-layout">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-section">Main</div>
+      <a href="index.html"><i class="fas fa-house"></i> Home</a>
+      <a href="dashboard.html"><i class="fas fa-gauge-high"></i> Dashboard</a>
+      <div class="sidebar-section">Productivity</div>
+      <a href="habits.html"><i class="fas fa-check-double"></i> Habits</a>
+      <a href="tasks.html"><i class="fas fa-list-check"></i> Tasks</a>
+      <div class="sidebar-section">Progress</div>
+      <a href="achievements.html" class="active"><i class="fas fa-medal"></i> Achievements</a>
+      <a href="statistics.html"><i class="fas fa-chart-line"></i> Statistics</a>
+      <div class="sidebar-section">More</div>
+      <a href="settings.html"><i class="fas fa-gear"></i> Settings</a>
+      <a href="about.html"><i class="fas fa-circle-info"></i> About</a>
+    </aside>
+
+    <main class="main-content">
+      <div class="page-title"> ACHIEVEMENTS</div>
+      <div class="page-subtitle">Unlock badges by completing milestones. How many can you collect?</div>
+
+      <!-- PROGRESS PANEL -->
+      <div class="panel" style="background:linear-gradient(135deg,rgba(251,191,36,0.1),rgba(249,115,22,0.08)); border-color:var(--yellow);">
+        <div style="display:flex; align-items:center; gap:1.5rem; flex-wrap:wrap;">
+          <div style="font-size:3rem;"></div>
+          <div style="flex:1;">
+            <div style="font-family:'Orbitron',sans-serif; font-size:1.1rem; font-weight:700; margin-bottom:.4rem;">ACHIEVEMENT PROGRESS</div>
+            <div class="progress-wrap" style="height:12px; margin-bottom:.5rem;">
+              <div class="progress-fill" id="achProgressBar" style="width:0%; background:linear-gradient(90deg,var(--yellow),var(--orange));"></div>
+            </div>
+            <div style="color:var(--text-muted); font-size:.85rem;"><span id="achUnlockedCount">0</span> / <span id="achTotalCount">0</span> Achievements Unlocked</div>
+          </div>
+          <div style="font-family:'Orbitron',sans-serif; font-size:2rem; font-weight:900; color:var(--yellow); text-align:center;">
+            <div id="achPercentage">0%</div>
+            <div style="font-size:.7rem; color:var(--text-muted); letter-spacing:1px;">COMPLETE</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BADGE GRID -->
+      <div class="badge-grid" id="badgeGrid"></div>
+    </main>
+  </div>
+
+  <script src="js/script.js"></script>
+  <script>
+    const ALL_ACHIEVEMENTS = [
+      { id:'first_task', icon:'-', name:'First Step', desc:'Complete your very first task', category:'Tasks' },
+      { id:'task5',      icon:'-', name:'Beginner',   desc:'Complete 5 tasks total',         category:'Tasks' },
+      { id:'task20',     icon:'-', name:'Achiever',   desc:'Complete 20 tasks total',        category:'Tasks' },
+      { id:'habit5',     icon:'-', name:'Habitual',   desc:'Complete 5 habits total',        category:'Habits' },
+      { id:'streak7',    icon:'-', name:'Warrior',    desc:'Maintain a 7-day streak',        category:'Streak' },
+      { id:'level5',     icon:'-', name:'Rising Star', desc:'Reach Level 5',                 category:'Level' },
+      { id:'level10',    icon:'-', name:'Master',     desc:'Reach Level 10',                 category:'Level' },
+      { id:'level20',    icon:'-', name:'Legendary',  desc:'Reach Level 20',                 category:'Level' },
+      { id:'task50',     icon:'-', name:'Grinder',    desc:'Complete 50 tasks',              category:'Tasks' },
+      { id:'streak30',   icon:'-', name:'Diamond',    desc:'Maintain a 30-day streak',       category:'Streak' },
+      { id:'habit20',    icon:'-', name:'Disciplined', desc:'Complete 20 habits',            category:'Habits' },
+      { id:'maxlvl',     icon:'-', name:'Ascendant',  desc:'Reach Level 50',                 category:'Level' },
+    ];
+
+    function renderBadges() {
+      const data = getPlayerData();
+      const unlocked = data.achievementsUnlocked || [];
+      const grid = document.getElementById('badgeGrid');
+
+      grid.innerHTML = ALL_ACHIEVEMENTS.map(a => {
+        const isUnlocked = unlocked.includes(a.id);
+        return `
+          <div class="badge-card ${isUnlocked ? 'unlocked' : 'locked'}">
+            <span class="badge-icon">${a.icon}</span>
+            <div class="badge-name">${a.name}</div>
+            <div class="badge-desc">${a.desc}</div>
+            <div style="font-size:.7rem; color:var(--text-muted); margin-bottom:.5rem; letter-spacing:1px;">${a.category.toUpperCase()}</div>
+            <span class="badge-status ${isUnlocked ? 'status-unlocked' : 'status-locked'}">${isUnlocked ? '✅ Unlocked' : '🔒 Locked'}</span>
+          </div>`;
+      }).join('');
+
+      const total = ALL_ACHIEVEMENTS.length;
+      const count = unlocked.length;
+      const pct = total > 0 ? Math.round((count / total) * 100) : 0;
+      document.getElementById('achUnlockedCount').textContent = count;
+      document.getElementById('achTotalCount').textContent = total;
+      document.getElementById('achPercentage').textContent = pct + '%';
+      document.getElementById('achProgressBar').style.width = pct + '%';
+    }
+
+    document.addEventListener('DOMContentLoaded', renderBadges);
+  </script>
+</body>
+</html>

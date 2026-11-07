@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard – Level Up Life</title>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body class="dark-mode">
+
+  <!-- LOADER -->
+  <div class="loader"><div class="loader-logo"> LevelUp Life</div><div class="loader-bar"><div class="loader-bar-inner"></div></div></div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-logo"><i class="fas fa-bolt"></i><span>LevelUp<span class="accent">Life</span></span></div>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="dashboard.html" class="active">Dashboard</a>
+      <a href="habits.html">Habits</a>
+      <a href="tasks.html">Tasks</a>
+      <a href="achievements.html">Achievements</a>
+      <a href="statistics.html">Statistics</a>
+      <a href="settings.html">Settings</a>
+      <a href="about.html">About</a>
+    </div>
+    <div class="nav-right">
+      <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon" id="themeIcon"></i></button>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <div class="app-layout">
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-section">Main</div>
+      <a href="index.html">Home</a>
+      <a href="dashboard.html" class="active">Dashboard</a>
+      <div class="sidebar-section">Productivity</div>
+      <a href="habits.html">Habits</a>
+      <a href="tasks.html">Tasks</a>
+      <div class="sidebar-section">Progress</div>
+      <a href="achievements.html">Achievements</a>
+      <a href="statistics.html">Statistics</a>
+      <div class="sidebar-section">More</div>
+      <a href="settings.html">Settings</a>
+      <a href="about.html">About</a>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+      <div class="page-title"> DASHBOARD</div>
+      <div class="page-subtitle">Welcome back, Player! Here's your daily summary.</div>
+
+      <!-- XP LEVEL CARD -->
+      <div class="panel" style="background: linear-gradient(135deg, rgba(124,58,237,0.15), rgba(34,211,238,0.1)); border-color: var(--primary);">
+        <div style="display:flex; align-items:center; gap:1.5rem; flex-wrap:wrap;">
+          <div style="text-align:center; min-width:100px;">
+            <div style="font-family:'Orbitron',sans-serif; font-size:3rem; font-weight:900; background:linear-gradient(135deg,var(--primary),var(--cyan)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">LVL <span id="levelNum">1</span></div>
+            <div style="color:var(--text-muted); font-size:0.8rem; letter-spacing:2px; text-transform:uppercase;" id="levelTitle">Novice</div>
+          </div>
+          <div style="flex:1; min-width:200px;">
+            <div style="display:flex; justify-content:space-between; margin-bottom:.5rem;">
+              <span style="font-weight:700;">Experience Points</span>
+              <span id="xpText" style="color:var(--cyan); font-weight:700;">0 / 100 XP</span>
+            </div>
+            <div class="xp-bar-wrap" style="height:16px;">
+              <div class="xp-bar-fill" id="xpBar" style="width:0%"></div>
+            </div>
+            <div style="color:var(--text-muted); font-size:0.8rem; margin-top:.4rem;">Complete tasks and habits to earn XP!</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STAT CARDS -->
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="stat-icon" style="background:rgba(34,211,238,0.15); color:var(--cyan);"><i class="fas fa-list-check"></i></div>
+          <div class="stat-info">
+            <div class="stat-val" id="totalTasksNum">0</div>
+            <div class="stat-label">Tasks Done</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon" style="background:rgba(124,58,237,0.15); color:var(--primary-light);"><i class="fas fa-check-double"></i></div>
+          <div class="stat-info">
+            <div class="stat-val" id="totalHabitsNum">0</div>
+            <div class="stat-label">Habits Done</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon" style="background:rgba(249,115,22,0.15); color:var(--orange);"><i class="fas fa-fire"></i></div>
+          <div class="stat-info">
+            <div class="stat-val" id="streakNum">0</div>
+            <div class="stat-label">Day Streak</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon" style="background:rgba(251,191,36,0.15); color:var(--yellow);"><i class="fas fa-medal"></i></div>
+          <div class="stat-info">
+            <div class="stat-val" id="achNum">0</div>
+            <div class="stat-label">Achievements</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- QUICK ACTIONS -->
+      <div class="panel">
+        <div class="panel-title"><i class="fas fa-bolt" style="color:var(--cyan)"></i> QUICK ACTIONS</div>
+        <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+          <button class="btn-primary btn-sm" onclick="location.href='habits.html'"><i class="fas fa-plus"></i> Add Habit</button>
+          <button class="btn-primary btn-sm" onclick="location.href='tasks.html'"><i class="fas fa-plus"></i> Add Task</button>
+          <button class="btn-ghost btn-sm" onclick="location.href='achievements.html'"><i class="fas fa-medal"></i> View Achievements</button>
+          <button class="btn-ghost btn-sm" onclick="location.href='statistics.html'"><i class="fas fa-chart-line"></i> Statistics</button>
+        </div>
+      </div>
+
+      <!-- TODAY'S HABITS PREVIEW -->
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; flex-wrap:wrap;">
+        <div class="panel">
+          <div class="panel-title"><i class="fas fa-check-double" style="color:var(--primary-light)"></i> TODAY'S HABITS</div>
+          <div id="dashHabits" class="item-list">
+            <div style="color:var(--text-muted); font-size:0.9rem; text-align:center; padding:1rem;">No habits yet. <a href="habits.html" style="color:var(--cyan);">Add some!</a></div>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-title"><i class="fas fa-list-check" style="color:var(--cyan)"></i> TODAY'S TASKS</div>
+          <div id="dashTasks" class="item-list">
+            <div style="color:var(--text-muted); font-size:0.9rem; text-align:center; padding:1rem;">No tasks yet. <a href="tasks.html" style="color:var(--cyan);">Add some!</a></div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <script src="js/script.js"></script>
+  <script>
+    // Sync achievements count
+    document.addEventListener('DOMContentLoaded', () => {
+      const data = getPlayerData();
+      const achEl = document.getElementById('achNum');
+      if (achEl) achEl.textContent = data.achievementsUnlocked.length;
+
+      // Show preview of habits
+      const habits = JSON.parse(localStorage.getItem('lul_habits') || '[]');
+      const dashHabits = document.getElementById('dashHabits');
+      if (habits.length > 0 && dashHabits) {
+        dashHabits.innerHTML = habits.slice(0, 4).map(h => `
+          <div class="item ${h.done ? 'done' : ''}">
+            <i class="fas ${h.done ? 'fa-circle-check' : 'fa-circle'}" style="color:${h.done ? 'var(--green)' : 'var(--text-muted)'}"></i>
+            <span class="item-name">${h.name}</span>
+            <span style="font-size:.75rem; color:var(--text-muted);">🔥${h.streak || 0}</span>
+          </div>`).join('');
+      }
+
+      // Show preview of tasks
+      const tasks = JSON.parse(localStorage.getItem('lul_tasks') || '[]');
+      const dashTasks = document.getElementById('dashTasks');
+      if (tasks.length > 0 && dashTasks) {
+        dashTasks.innerHTML = tasks.slice(0, 4).map(t => `
+          <div class="item ${t.done ? 'done' : ''}">
+            <i class="fas ${t.done ? 'fa-circle-check' : 'fa-circle'}" style="color:${t.done ? 'var(--green)' : 'var(--text-muted)'}"></i>
+            <span class="item-name">${t.name}</span>
+            <span class="item-badge badge-${t.priority}">${t.priority}</span>
+          </div>`).join('');
+      }
+    });
+  </script>
+</body>
+</html>
